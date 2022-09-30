@@ -1,4 +1,5 @@
 import os
+from unicodedata import numeric
 import tweepy
 from dotenv import load_dotenv
 
@@ -14,6 +15,11 @@ auth.set_access_token(TOKEN, TOKEN_SECRET)
 api = tweepy.API(auth)
 
 tweet = input("Twitter message: ")
-api.update_status(status=(tweet))
+image_path = input("Image path (skip if you don't want to post an image): ")
+
+if image_path != "" and numeric(image_path):
+    api.update_status_with_media(status=tweet, filename=image_path)
+else:
+    api.update_status(status=tweet)
 
 print("Message sent.")
