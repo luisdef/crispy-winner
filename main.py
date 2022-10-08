@@ -1,5 +1,4 @@
 import os
-from unicodedata import numeric
 import tweepy
 from dotenv import load_dotenv
 
@@ -28,6 +27,5 @@ elif opt == 1:
     tweet_id = input("Tweet id = ")
     reply = input("Twitter message: ")
     api.update_status(status=reply, in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
-
 
 print("Message sent.")
